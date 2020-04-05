@@ -1,12 +1,27 @@
 version: '3'
 
+networks:
+  host:
+
 services:
-  springboot-docker-compose-app-container:
-    image: springboot-docker-compose-app:1
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    volumes:
-      - /data/springboot-docker-compose-app
+  practica-jms-main:
+    image: ejnunez1311/practica-jms-main
+
+    container_name:  practica-jms-main
+    
     ports:
-      - "8081:8081"
+      - 8080:4567
+
+    networks:
+      - host
+
+  practica-jms-msj:
+    image: ejnunez1311/practica-jms-msj
+
+    container_name:  practica-jms-msj
+
+    ports:
+      - 61616:61616
+
+    networks:
+      - host
